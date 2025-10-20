@@ -203,7 +203,7 @@ function This_MOD.get_elements()
     --- Función para analizar cada entidad
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-    local function valide_entity(item, entity)
+    local function validate_entity(item, entity)
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
         --- Validación
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -345,7 +345,7 @@ function This_MOD.get_elements()
     for _, entity in pairs(data.raw.splitter) do
         local Result = GMOD.parameter.get_item_create.place_result
         Result = GMOD.get_item_create(entity, Result)
-        valide_entity(Result, entity)
+        validate_entity(Result, entity)
     end
 
     --- Item a afectar
