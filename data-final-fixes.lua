@@ -365,8 +365,12 @@ function This_MOD.add_item(item)
 
     if GMOD.get_key(item.flags, "not-stackable") then return end
     if GMOD.get_key(item.flags, "spawnable") then return end
+
     if This_MOD.ignore_types[item.type] then return end
     if This_MOD.ignore_items[item.name] then return end
+
+    if GMOD.has_id(item.name, This_MOD.id) then return end
+    if GMOD.has_id(item.name, "d13b") then return end
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
@@ -414,6 +418,10 @@ function This_MOD.add_item(item)
     Space.item_name =
         Prefix ..
         Amount
+
+    --- Validar si ya existe
+    if GMOD.items[Space.item_name] then return end
+    if GMOD.items[Prefix .. "d13b-" .. Amount] then return end
 
     --- Nombre de la recetas
     Space.do_name =
