@@ -343,9 +343,7 @@ function This_MOD.get_elements()
 
     --- Entidad que se va a duplicar
     for _, entity in pairs(data.raw.splitter) do
-        local Result = GMOD.parameter.get_item_create.place_result
-        Result = GMOD.get_item_create(entity, Result)
-        validate_entity(Result, entity)
+        validate_entity(GMOD.get_item_create(entity, "place_result"), entity)
     end
 
     --- Item a afectar
