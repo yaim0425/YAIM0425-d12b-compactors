@@ -584,6 +584,9 @@ function This_MOD.create_entity(space)
     --- Nombre
     Entity.name = space.name
 
+    --- D
+    local Speed = space.entity.speed / This_MOD.speed_base
+
     --- Apodo y descripción
     Entity.localised_name = space.localised_name
     Entity.localised_description = { "", { "entity-description." .. This_MOD.prefix .. This_MOD.entity_name } }
@@ -663,7 +666,7 @@ function This_MOD.create_entity(space)
         animation = {
             layers = {
                 {
-                    animation_speed = space.entity.speed,
+                    animation_speed = 5 / Speed,
                     filename        = This_MOD.entity_graphics.base,
                     shift           = { 0, 0 },
                     width           = 96,
@@ -675,7 +678,7 @@ function This_MOD.create_entity(space)
                     priority        = "high",
                 },
                 {
-                    animation_speed = space.entity.speed,
+                    animation_speed = 5 / Speed,
                     filename        = This_MOD.entity_graphics.mask,
                     shift           = { 0, 0 },
                     width           = 96,
@@ -687,7 +690,7 @@ function This_MOD.create_entity(space)
                     tint            = space.color,
                 },
                 {
-                    animation_speed = space.entity.speed,
+                    animation_speed = 5 / Speed,
                     filename        = This_MOD.entity_graphics.shadow,
                     shift           = { 0.5, 0 },
                     width           = 144,
@@ -702,7 +705,7 @@ function This_MOD.create_entity(space)
         },
         working_visualisations = { {
             animation = {
-                animation_speed = space.entity.speed,
+                animation_speed = 5 / Speed,
                 filename        = This_MOD.entity_graphics.working,
                 width           = 96,
                 height          = 96,
@@ -735,9 +738,7 @@ function This_MOD.create_entity(space)
     Entity.energy_usage = string.format("%dkW", math.floor((space.entity.speed / 0.03125) * 90))
 
     --- Velocidad de fabricación
-    Entity.crafting_speed = space.entity.speed / This_MOD.speed_base
-    Entity.crafting_speed = math.floor(Entity.crafting_speed * 10 + 0.5)
-    Entity.crafting_speed = Entity.crafting_speed / 10
+    Entity.crafting_speed = 0.25 * Speed
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
