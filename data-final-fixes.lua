@@ -584,7 +584,11 @@ function This_MOD.create_entity(space)
     --- Nombre
     Entity.name = space.name
 
-    --- D
+    --- Valores de verificación
+    Entity.type = "furnace"
+    Entity.source_inventory_size = 1
+
+    --- Velocidad de la animación
     local Speed = space.entity.speed / This_MOD.speed_base
 
     --- Apodo y descripción
