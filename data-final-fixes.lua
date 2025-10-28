@@ -203,7 +203,7 @@ function This_MOD.get_elements()
     --- Función para analizar cada entidad
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-    local function valide_entity(item, entity)
+    local function validate_entity(item, entity)
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
         --- Validación
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -231,7 +231,7 @@ function This_MOD.get_elements()
             This_MOD.id .. "-" ..
             Name
 
-        if GMOD.entities[Name] ~= nil then return end
+        if GMOD.entities[Name] then return end
 
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
@@ -343,9 +343,7 @@ function This_MOD.get_elements()
 
     --- Entidad que se va a duplicar
     for _, entity in pairs(data.raw.splitter) do
-        local Result = GMOD.parameter.get_item_create.place_result
-        Result = GMOD.get_item_create(entity, Result)
-        valide_entity(Result, entity)
+        validate_entity(GMOD.get_item_create(entity, "place_result"), entity)
     end
 
     --- Item a afectar
@@ -367,8 +365,12 @@ function This_MOD.add_item(item)
 
     if GMOD.get_key(item.flags, "not-stackable") then return end
     if GMOD.get_key(item.flags, "spawnable") then return end
+
     if This_MOD.ignore_types[item.type] then return end
     if This_MOD.ignore_items[item.name] then return end
+
+    if GMOD.has_id(item.name, This_MOD.id) then return end
+    if GMOD.has_id(item.name, "d13b") then return end
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
@@ -416,6 +418,10 @@ function This_MOD.add_item(item)
     Space.item_name =
         Prefix ..
         Amount
+
+    --- Validar si ya existe
+    if GMOD.items[Space.item_name] then return end
+    if GMOD.items[Prefix .. "d13b-" .. Amount] then return end
 
     --- Nombre de la recetas
     Space.do_name =
@@ -578,6 +584,13 @@ function This_MOD.create_entity(space)
     --- Nombre
     Entity.name = space.name
 
+    --- Valores de verificación
+    Entity.type = "furnace"
+    Entity.source_inventory_size = 1
+
+    --- Velocidad de la animación
+    local Speed = space.entity.speed / This_MOD.speed_base
+
     --- Apodo y descripción
     Entity.localised_name = space.localised_name
     Entity.localised_description = { "", { "entity-description." .. This_MOD.prefix .. This_MOD.entity_name } }
@@ -620,9 +633,7 @@ function This_MOD.create_entity(space)
             Name
 
         --- La entidad ya existe
-        if GMOD.entities[Name] ~= nil then
-            return Name
-        end
+        if GMOD.entities[Name] then return Name end
 
         --- La entidad existirá
         for _, Spaces in pairs(This_MOD.to_be_processed) do
@@ -659,7 +670,7 @@ function This_MOD.create_entity(space)
         animation = {
             layers = {
                 {
-                    animation_speed = space.entity.speed,
+                    animation_speed = 5 / Speed,
                     filename        = This_MOD.entity_graphics.base,
                     shift           = { 0, 0 },
                     width           = 96,
@@ -671,7 +682,7 @@ function This_MOD.create_entity(space)
                     priority        = "high",
                 },
                 {
-                    animation_speed = space.entity.speed,
+                    animation_speed = 5 / Speed,
                     filename        = This_MOD.entity_graphics.mask,
                     shift           = { 0, 0 },
                     width           = 96,
@@ -683,7 +694,7 @@ function This_MOD.create_entity(space)
                     tint            = space.color,
                 },
                 {
-                    animation_speed = space.entity.speed,
+                    animation_speed = 5 / Speed,
                     filename        = This_MOD.entity_graphics.shadow,
                     shift           = { 0.5, 0 },
                     width           = 144,
@@ -698,7 +709,7 @@ function This_MOD.create_entity(space)
         },
         working_visualisations = { {
             animation = {
-                animation_speed = space.entity.speed,
+                animation_speed = 5 / Speed,
                 filename        = This_MOD.entity_graphics.working,
                 width           = 96,
                 height          = 96,
@@ -731,9 +742,7 @@ function This_MOD.create_entity(space)
     Entity.energy_usage = string.format("%dkW", math.floor((space.entity.speed / 0.03125) * 90))
 
     --- Velocidad de fabricación
-    Entity.crafting_speed = space.entity.speed / This_MOD.speed_base
-    Entity.crafting_speed = math.floor(Entity.crafting_speed * 10 + 0.5)
-    Entity.crafting_speed = Entity.crafting_speed / 10
+    Entity.crafting_speed = 0.25 * Speed
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
@@ -852,9 +861,7 @@ function This_MOD.create_recipe(space)
                 Name
 
             --- La entidad ya existe
-            if GMOD.entities[Name] ~= nil then
-                return Name
-            end
+            if GMOD.entities[Name] then return Name end
 
             --- La entidad existirá
             for _, Spaces in pairs(This_MOD.to_be_processed) do
