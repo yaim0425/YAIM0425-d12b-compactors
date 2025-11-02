@@ -176,14 +176,15 @@ function This_MOD.reference_values()
     }
 
     --- Propiedades a duplicar
-    This_MOD.properties = {}
-    table.insert(This_MOD.properties, "localised_name")
-    table.insert(This_MOD.properties, "inventory_move_sound")
-    table.insert(This_MOD.properties, "pick_sound")
-    table.insert(This_MOD.properties, "drop_sound")
-    table.insert(This_MOD.properties, "stack_size")
-    table.insert(This_MOD.properties, "order")
-    table.insert(This_MOD.properties, "icons")
+    This_MOD.properties = {
+        "localised_name",
+        "inventory_move_sound",
+        "pick_sound",
+        "drop_sound",
+        "stack_size",
+        "order",
+        "icons",
+    }
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 end
