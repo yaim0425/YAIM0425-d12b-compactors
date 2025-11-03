@@ -1295,6 +1295,9 @@ function This_MOD.create_tech___compact()
         --- Tech previas
         Do_tech.prerequisites = { Prerequisites.name }
 
+        --- Ocultar la tech
+        Do_tech.hidden = true
+
         --- Cambiar icono
         Do_tech.icons = GMOD.copy(data.raw.recipe[space.do_name].icons)
         for _, icon in pairs(Do_tech.icons) do
@@ -1345,6 +1348,9 @@ function This_MOD.create_tech___compact()
 
         --- Tech previas
         Undo_tech.prerequisites = { Do_tech.name }
+
+        --- Ocultar la tech
+        Undo_tech.hidden = true
 
         --- Cambiar icono
         Undo_tech.icons = GMOD.copy(data.raw.recipe[space.undo_name].icons)
