@@ -186,6 +186,10 @@ function This_MOD.reference_values()
         "icons",
     }
 
+    --- uncompressed con las manos
+    --- POST: https://forums.factorio.com/viewtopic.php?t=127439
+    This_MOD.uncompress_with_hands = false
+
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 end
 
@@ -782,8 +786,10 @@ function This_MOD.create_entity(space)
     --- Permirte la descompresión sin la maquina
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-    table.insert(data.raw["character"].character.crafting_categories, This_MOD.prefix .. This_MOD.category_undo)
-    table.insert(data.raw["god-controller"].default.crafting_categories, This_MOD.prefix .. This_MOD.category_undo)
+    if This_MOD.uncompress_with_hands then
+        table.insert(data.raw["character"].character.crafting_categories, This_MOD.prefix .. This_MOD.category_undo)
+        table.insert(data.raw["god-controller"].default.crafting_categories, This_MOD.prefix .. This_MOD.category_undo)
+    end
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 end
@@ -1157,7 +1163,11 @@ function This_MOD.create_recipe___compact()
             space.undo_subgroup
 
         --- Ocultar receta del menú del jugador
-        Recipe.hide_from_player_crafting = category == This_MOD.category_do
+        if This_MOD.uncompress_with_hands then
+            Recipe.hide_from_player_crafting = category == This_MOD.category_do
+        else
+            Recipe.hide_from_player_crafting = true
+        end
 
         --- Desactivar la recetas
         Recipe.enabled = false
