@@ -188,7 +188,7 @@ function This_MOD.reference_values()
 
     --- uncompressed con las manos
     --- POST: https://forums.factorio.com/viewtopic.php?t=127439
-    This_MOD.uncompress_with_hands = false
+    This_MOD.bug_fixed = false
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 end
@@ -786,7 +786,7 @@ function This_MOD.create_entity(space)
     --- Permirte la descompresión sin la maquina
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-    if This_MOD.uncompress_with_hands then
+    if This_MOD.bug_fixed then
         table.insert(data.raw["character"].character.crafting_categories, This_MOD.prefix .. This_MOD.category_undo)
         table.insert(data.raw["god-controller"].default.crafting_categories, This_MOD.prefix .. This_MOD.category_undo)
     end
@@ -1163,7 +1163,7 @@ function This_MOD.create_recipe___compact()
             space.undo_subgroup
 
         --- Ocultar receta del menú del jugador
-        if This_MOD.uncompress_with_hands then
+        if This_MOD.bug_fixed then
             Recipe.hide_from_player_crafting = category == This_MOD.category_do
         else
             Recipe.hide_from_player_crafting = true
