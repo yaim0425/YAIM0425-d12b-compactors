@@ -1326,9 +1326,6 @@ function This_MOD.create_tech___compact()
         Do_tech.localised_name = space.item.localised_name
         Do_tech.localised_description = space.item.localised_description
 
-        --- Tech previas
-        Do_tech.prerequisites = { Prerequisites.name }
-
         --- Ocultar la tech
         Do_tech.hidden = true
 
@@ -1356,7 +1353,7 @@ function This_MOD.create_tech___compact()
         if not Resource then
             Do_tech.research_trigger.type = "craft-item"
             Do_tech.research_trigger.item = space.item.name
-            Do_tech.research_trigger.count = space.amount
+            Do_tech.research_trigger.count = 1
         end
 
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
