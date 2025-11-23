@@ -1175,8 +1175,20 @@ function This_MOD.create_recipe___compact()
         --- Compresión
         if category == This_MOD.category_do then
             --- Ingredientes y resultado
-            Recipe.results = { { type = "item", name = space.item_name, amount = 1 } }
-            Recipe.ingredients = { { type = "item", name = space.item.name, amount = space.amount } }
+            Recipe.results = { {
+                type = "item",
+                name = space.item_name,
+                ignored_by_productivity = 0,
+                ignored_by_stats = 1,
+                amount = 1
+            } }
+            Recipe.ingredients = { {
+                type = "item",
+                name = space.item.name,
+                ignored_by_productivity = 0,
+                ignored_by_stats = space.amount,
+                amount = space.amount
+            } }
 
             --- Indicador del MOD
             table.insert(Recipe.icons, This_MOD.arrow_d___icon)
@@ -1185,8 +1197,20 @@ function This_MOD.create_recipe___compact()
         --- Descompresión
         if category == This_MOD.category_undo then
             --- Ingredientes y resultado
-            Recipe.ingredients = { { type = "item", name = space.item_name, amount = 1 } }
-            Recipe.results = { { type = "item", name = space.item.name, amount = space.amount } }
+            Recipe.ingredients = { {
+                type = "item",
+                name = space.item_name,
+                ignored_by_productivity = 0,
+                ignored_by_stats = 1,
+                amount = 1
+            } }
+            Recipe.results = { {
+                type = "item",
+                name = space.item.name,
+                ignored_by_productivity = 0,
+                ignored_by_stats = space.amount,
+                amount = space.amount
+            } }
 
             --- Indicador del MOD
             table.insert(Recipe.icons, This_MOD.arrow_u___icon)
