@@ -186,6 +186,10 @@ function This_MOD.reference_values()
         "icons",
     }
 
+    --- uncompressed con las manos
+    --- POST: https://forums.factorio.com/viewtopic.php?t=127439
+    This_MOD.bug_fixed = false
+
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 end
 
@@ -782,8 +786,10 @@ function This_MOD.create_entity(space)
     --- Permirte la descompresión sin la maquina
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-    table.insert(data.raw["character"].character.crafting_categories, This_MOD.prefix .. This_MOD.category_undo)
-    table.insert(data.raw["god-controller"].default.crafting_categories, This_MOD.prefix .. This_MOD.category_undo)
+    if This_MOD.bug_fixed then
+        table.insert(data.raw["character"].character.crafting_categories, This_MOD.prefix .. This_MOD.category_undo)
+        table.insert(data.raw["god-controller"].default.crafting_categories, This_MOD.prefix .. This_MOD.category_undo)
+    end
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 end
@@ -1157,7 +1163,11 @@ function This_MOD.create_recipe___compact()
             space.undo_subgroup
 
         --- Ocultar receta del menú del jugador
-        Recipe.hide_from_player_crafting = category == This_MOD.category_do
+        if This_MOD.bug_fixed then
+            Recipe.hide_from_player_crafting = category == This_MOD.category_do
+        else
+            Recipe.hide_from_player_crafting = true
+        end
 
         --- Desactivar la recetas
         Recipe.enabled = false
@@ -1165,8 +1175,20 @@ function This_MOD.create_recipe___compact()
         --- Compresión
         if category == This_MOD.category_do then
             --- Ingredientes y resultado
-            Recipe.results = { { type = "item", name = space.item_name, amount = 1 } }
-            Recipe.ingredients = { { type = "item", name = space.item.name, amount = space.amount } }
+            Recipe.results = { {
+                type = "item",
+                name = space.item_name,
+                ignored_by_productivity = 0,
+                ignored_by_stats = 1,
+                amount = 1
+            } }
+            Recipe.ingredients = { {
+                type = "item",
+                name = space.item.name,
+                ignored_by_productivity = 0,
+                ignored_by_stats = space.amount,
+                amount = space.amount
+            } }
 
             --- Indicador del MOD
             table.insert(Recipe.icons, This_MOD.arrow_d___icon)
@@ -1175,8 +1197,20 @@ function This_MOD.create_recipe___compact()
         --- Descompresión
         if category == This_MOD.category_undo then
             --- Ingredientes y resultado
-            Recipe.ingredients = { { type = "item", name = space.item_name, amount = 1 } }
-            Recipe.results = { { type = "item", name = space.item.name, amount = space.amount } }
+            Recipe.ingredients = { {
+                type = "item",
+                name = space.item_name,
+                ignored_by_productivity = 0,
+                ignored_by_stats = 1,
+                amount = 1
+            } }
+            Recipe.results = { {
+                type = "item",
+                name = space.item.name,
+                ignored_by_productivity = 0,
+                ignored_by_stats = space.amount,
+                amount = space.amount
+            } }
 
             --- Indicador del MOD
             table.insert(Recipe.icons, This_MOD.arrow_u___icon)
@@ -1292,9 +1326,6 @@ function This_MOD.create_tech___compact()
         Do_tech.localised_name = space.item.localised_name
         Do_tech.localised_description = space.item.localised_description
 
-        --- Tech previas
-        Do_tech.prerequisites = { Prerequisites.name }
-
         --- Ocultar la tech
         Do_tech.hidden = true
 
@@ -1322,7 +1353,7 @@ function This_MOD.create_tech___compact()
         if not Resource then
             Do_tech.research_trigger.type = "craft-item"
             Do_tech.research_trigger.item = space.item.name
-            Do_tech.research_trigger.count = space.amount
+            Do_tech.research_trigger.count = 1
         end
 
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
