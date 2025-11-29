@@ -187,7 +187,7 @@ function This_MOD.reference_values()
     }
 
     --- uncompressed con las manos
-    --- POST: https://forums.factorio.com/viewtopic.php?t=127439
+    --- POST: https://forums.factorio.com/viewtopic.php?t=131865
     This_MOD.bug_fixed = false
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
