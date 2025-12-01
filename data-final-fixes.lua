@@ -1073,11 +1073,11 @@ function This_MOD.create_item___compact()
 
         --- Duplicar el subgrupo
         if not GMOD.subgroups[Item.subgroup] then
-            GMOD.duplicate_subgroup(space.item.subgroup, Item.subgroup)
+            GMOD.duplicate_subgroup(space.item.subgroup or "other", Item.subgroup)
 
             --- Renombrar
             local Subgroup = GMOD.subgroups[Item.subgroup]
-            local Order = GMOD.subgroups[space.item.subgroup].order
+            local Order = GMOD.subgroups[space.item.subgroup or "other"].order
 
             --- Actualizar el order
             Subgroup.order = 8 .. Order:sub(2)
@@ -1234,11 +1234,11 @@ function This_MOD.create_recipe___compact()
 
         --- Duplicar el subgrupo
         if not GMOD.subgroups[Recipe.subgroup] then
-            GMOD.duplicate_subgroup(space.item.subgroup, Recipe.subgroup)
+            GMOD.duplicate_subgroup(space.item.subgroup or "other", Recipe.subgroup)
 
             --- Renombrar
             local Subgroup = GMOD.subgroups[Recipe.subgroup]
-            local Order = GMOD.subgroups[space.item.subgroup].order
+            local Order = GMOD.subgroups[space.item.subgroup or "other"].order
             local Index = category == This_MOD.category_undo and 7 or 9
 
             --- Actualizar el order
