@@ -375,7 +375,8 @@ function This_MOD.add_item(item)
     if This_MOD.ignore_items[item.name] then return end
 
     if GMOD.has_id(item.name, This_MOD.id) then return end
-    if GMOD.has_id(item.name, "d13b") then return end
+    if GMOD.d13b and GMOD.has_id(item.name, GMOD.d13b.id) then return end
+    if GMOD.d27b and GMOD.has_id(item.name, GMOD.d27b.id) then return end
 
     if not item.subgroup then return end
 
