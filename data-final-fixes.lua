@@ -187,7 +187,7 @@ function This_MOD.reference_values()
     }
 
     --- uncompressed con las manos
-    --- POST: https://forums.factorio.com/viewtopic.php?t=127439
+    --- POST: https://forums.factorio.com/viewtopic.php?t=131865
     This_MOD.bug_fixed = false
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -254,7 +254,7 @@ function This_MOD.get_elements()
         Space.name = Name
 
         Space.belt = string.gsub(That_MOD.name, This_MOD.splitter, This_MOD.item_tech)
-        Space.tech = GMOD.get_technology(GMOD.recipes[Space.belt])
+        Space.tech = GMOD.get_technology(GMOD.recipes[Space.belt], true)
 
         Space.recipe = GMOD.recipes[Space.item.name]
         Space.recipe = Space.recipe and Space.recipe[1] or nil
@@ -375,7 +375,10 @@ function This_MOD.add_item(item)
     if This_MOD.ignore_items[item.name] then return end
 
     if GMOD.has_id(item.name, This_MOD.id) then return end
-    if GMOD.has_id(item.name, "d13b") then return end
+    if GMOD.d13b and GMOD.has_id(item.name, GMOD.d13b.id) then return end
+    if GMOD.d27b and GMOD.has_id(item.name, GMOD.d27b.id) then return end
+
+    if not item.subgroup then return end
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
