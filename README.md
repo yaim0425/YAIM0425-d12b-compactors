@@ -41,11 +41,33 @@ Operation is straightforward: insert items to compact them, or feed compacted it
 
 ## 🔗 Repository
 
-* GitHub: [https://github.com/yaim0425/YAIM0425-d12b-compactors](https://github.com/yaim0425/YAIM0425-d12b-compactors)
+**MOD**
+[YAIM0425 d12b Compactors](https://github.com/yaim0425/YAIM0425-d12b-compactors)
+
+**Required**
+
+[YAIM0425 d00b Core](https://github.com/yaim0425/YAIM0425-d00b-core)
+
+---
+
+## ❤️ Support
+
+Suggestions, ideas, and balance feedback are welcome on the GitHub repository.
 
 ---
 
 ## 🖼️ Screenshots
 
+![Screenshot 1](https://github.com/yaim0425/YAIM0425-d12b-compactors/raw/code/screenshot/(1).png)
 
----
+![Screenshot 2](https://github.com/yaim0425/YAIM0425-d12b-compactors/raw/code/screenshot/(2).png)
+
+![Screenshot 3](https://github.com/yaim0425/YAIM0425-d12b-compactors/raw/code/screenshot/(3).png)
+
+![Screenshot 4](https://github.com/yaim0425/YAIM0425-d12b-compactors/raw/code/screenshot/(4).png)
+
+![Screenshot 5](https://github.com/yaim0425/YAIM0425-d12b-compactors/raw/code/screenshot/(5).png)
+
+![Screenshot 6](https://github.com/yaim0425/YAIM0425-d12b-compactors/raw/code/screenshot/(6).png)
+
+![Screenshot 7](https://github.com/yaim0425/YAIM0425-d12b-compactors/raw/code/screenshot/(7).png)
