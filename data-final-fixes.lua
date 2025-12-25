@@ -1181,15 +1181,11 @@ function This_MOD.create_recipe___compact()
             Recipe.results = { {
                 type = "item",
                 name = space.item_name,
-                ignored_by_productivity = 0,
-                ignored_by_stats = 1,
                 amount = 1
             } }
             Recipe.ingredients = { {
                 type = "item",
                 name = space.item.name,
-                ignored_by_productivity = 0,
-                ignored_by_stats = space.amount,
                 amount = space.amount
             } }
 
@@ -1203,15 +1199,11 @@ function This_MOD.create_recipe___compact()
             Recipe.ingredients = { {
                 type = "item",
                 name = space.item_name,
-                ignored_by_productivity = 0,
-                ignored_by_stats = 1,
                 amount = 1
             } }
             Recipe.results = { {
                 type = "item",
                 name = space.item.name,
-                ignored_by_productivity = 0,
-                ignored_by_stats = space.amount,
                 amount = space.amount
             } }
 
