@@ -1064,6 +1064,9 @@ function This_MOD.create_item___compact()
             Item.icons[#Item.icons].scale = 0.23
         end
 
+        --- Peso para el cohete
+        Item.weight = space.amount
+
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
 
@@ -1296,9 +1299,6 @@ function This_MOD.create_tech___compact()
             data.raw.recipe[space.undo_name].enabled = true
             return
         end
-
-        --- No se requiere prerequitos para minerales
-        Prerequisites = not Resource and Prerequisites or {}
 
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
