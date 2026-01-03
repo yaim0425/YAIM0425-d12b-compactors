@@ -6,7 +6,7 @@
 
 **YAIM904 d12b – Compactors** introduces special machines that allow you to **compress items into compact forms** and later **decompress them back** to their original state.
 
-This MOD is designed to make **storage, transport, and logistics** more efficient, especially when dealing with large quantities of items.
+This MOD is designed to make **storage, transport and logistics** more efficient, especially when dealing with large quantities of items.
 
 ---
 
@@ -54,7 +54,7 @@ Operation is straightforward: insert items to compact them, or feed compacted it
 
 ## ❤️ Support
 
-Suggestions, ideas, and balance feedback are welcome on the GitHub repository.
+Suggestions, ideas and balance feedback are welcome on the GitHub repository.
 
 ---
 
