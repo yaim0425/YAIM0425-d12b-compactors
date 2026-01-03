@@ -1064,9 +1064,6 @@ function This_MOD.create_item___compact()
             Item.icons[#Item.icons].scale = 0.23
         end
 
-        --- Peso para el cohete
-        Item.weight = space.amount
-
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
 
