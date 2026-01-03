@@ -1,5 +1,7 @@
 # YAIM904 d12b – Compactors 🗜️📦
 
+---
+
 ## 📦 Description
 
 **YAIM904 d12b – Compactors** introduces special machines that allow you to **compress items into compact forms** and later **decompress them back** to their original state.
