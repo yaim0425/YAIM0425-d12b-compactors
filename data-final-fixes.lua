@@ -46,7 +46,7 @@ function This_MOD.start()
     This_MOD.create_tech___compact()
 
     --- Implementar otros MODs
-    if GMOD.d19b then GMOD.d19b.start() end
+    if GMOD.d18b then GMOD.d18b.start() end
 
     --- Fijar las posiciones actual
     GMOD.d00b.change_orders()
