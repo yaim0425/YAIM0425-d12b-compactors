@@ -65,6 +65,24 @@ table.insert(This_MOD.setting, {
 	default_value = 10
 })
 
+--- Opcion: productivity
+table.insert(This_MOD.setting, {
+	type = "bool",
+	name = "productivity",
+	localised_name = { "item-name.productivity-module" },
+	default_value = true
+})
+
+--- Opcion: quality
+if mods["space-age"] then
+	table.insert(This_MOD.setting, {
+		type = "bool",
+		name = "quality",
+		localised_name = { "item-name.quality-module" },
+		default_value = true
+	})
+end
+
 ---------------------------------------------------------------------------------------------------
 
 

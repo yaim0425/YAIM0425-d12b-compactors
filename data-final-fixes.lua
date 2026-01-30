@@ -762,6 +762,31 @@ function This_MOD.create_entity(space)
 
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+    --- Efectos permitidos
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+    Entity.allowed_effects = {
+        "consumption",
+        "pollution",
+        "speed"
+    }
+
+    if This_MOD.setting.productivity then
+        table.insert(Entity.allowed_effects, "productivity")
+    end
+
+
+    if This_MOD.setting.quality then
+        table.insert(Entity.allowed_effects, "quality")
+    end
+
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+
+
+
+
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
     --- Crear el prototipo
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
