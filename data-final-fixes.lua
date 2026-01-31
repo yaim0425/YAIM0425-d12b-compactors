@@ -45,6 +45,9 @@ function This_MOD.start()
     This_MOD.create_recipe___compact()
     This_MOD.create_tech___compact()
 
+    --- Implementar otros MODs
+    if GMOD.d18b then GMOD.d18b.start() end
+
     --- Fijar las posiciones actual
     GMOD.d00b.change_orders()
 
@@ -759,6 +762,31 @@ function This_MOD.create_entity(space)
 
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+    --- Efectos permitidos
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+    Entity.allowed_effects = {
+        "consumption",
+        "pollution",
+        "speed"
+    }
+
+    if This_MOD.setting.productivity then
+        table.insert(Entity.allowed_effects, "productivity")
+    end
+
+
+    if This_MOD.setting.quality then
+        table.insert(Entity.allowed_effects, "quality")
+    end
+
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+
+
+
+
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
     --- Crear el prototipo
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
@@ -1296,9 +1324,6 @@ function This_MOD.create_tech___compact()
             data.raw.recipe[space.undo_name].enabled = true
             return
         end
-
-        --- No se requiere prerequitos para minerales
-        Prerequisites = not Resource and Prerequisites or {}
 
         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
